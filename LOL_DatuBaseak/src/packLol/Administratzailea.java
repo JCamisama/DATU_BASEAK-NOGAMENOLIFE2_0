@@ -10,16 +10,20 @@ public class Administratzailea {
     }
     public void menuaBistaratu(){
         int aukera = 0;
-        Connection konexioa=null;
+        //Connection konexioa=null;
         while (aukera != 9) {
-            System.out.println("Ongietorri Splendor jokora. Zer egin nahi duzu?");
-            System.out.println("+--------------+");
-            System.out.println("|    Menua     |");
-            System.out.println("+--------------+");
+            System.out.println("");
+            System.out.println("+-------------------------------+");
+            System.out.println("|    Administratzaile Menua     |");
+            System.out.println("+-------------------------------+");
             System.out.println("Aukeratu:");
             System.out.println("1.- Jokalari berria sartu");
-            System.out.println("2.- Partida berria sartu");
-            System.out.println("3.- Jokalari guztiak erakutsi");
+            System.out.println("2.- Pertsonaia berria sartu");
+            System.out.println("3.- Objektu berria sartu");
+            System.out.println("4.- Pertsonaiaren indarra aldatu");
+            System.out.println("5.- Pertsonaiaren defentsa aldatu");
+            System.out.println("6.- Objektuaren indarra aldatu");
+            System.out.println("7.- Objektuaren defentsa aldatu");
             System.out.println("9.- Irten");
             System.out.println("Sartu aukera");
             aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
