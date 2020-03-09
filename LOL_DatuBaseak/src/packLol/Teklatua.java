@@ -1,4 +1,4 @@
-package chapapote;
+package packLol;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
