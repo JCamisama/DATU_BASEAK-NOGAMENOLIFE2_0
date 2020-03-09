@@ -22,24 +22,24 @@ public class MetodosCamisama {
 	        st.executeUpdate(query); 
 	    }
 
-	 /*
+	
 	 public static void pertsonaiaSartu(Connection konexioa) throws SQLException {
 	       
-	        String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
-	        String rola = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren rola: ");
-	        int	   adina = Teklatua.getTeklatua().irakurriOsoa("Sartu jokalariaren rola: ");
-	        String izena = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren izena: ");
-	        String herrialdea = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren herrialdea: ");
+	        String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
+	        String kategoria = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren kategoria: ");
+	        int    indarra   = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren indarra: ");
+	        int    defentsa  = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren defentsa: ");
+	        int    kostua    = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren kostua: ");
 	        //String pertsonaiIzena = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren pertsonaia: ");
 	        
 	        
 	        //Kontuz, 
-	        String query = "INSERT INTO JOKALARI(nan, rola, adina, izena, herrialdea) VALUES ('"+nan+"','"+rola+"',"+adina+",'"+izena+"','"+herrialdea+"' )";
+	        String query = "INSERT INTO JOKALARI(nan, rola, adina, izena, herrialdea) VALUES ('"+izena+"','"+kategoria+"',"+indarra+","+defentsa+","+kostua+" )";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query); 
 	    }
 
-	 */
+	
 	 
 	 
 	 /*Administratzailea
