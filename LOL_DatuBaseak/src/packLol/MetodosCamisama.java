@@ -14,7 +14,7 @@ public class MetodosCamisama {
 	        String izena = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren izena: ");
 	        String herrialdea = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren herrialdea: ");
 	        //String pertsonaiIzena = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren pertsonaia: ");
-	        
+	        //cambio random
 	        
 	        //Kontuz, 
 	        String query = "INSERT INTO JOKALARI(nan, rola, adina, izena, herrialdea) VALUES ('"+nan+"','"+rola+"',"+adina+",'"+izena+"','"+herrialdea+"' )";
