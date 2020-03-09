@@ -34,10 +34,29 @@ public class MetodosCamisama {
 	        
 	        
 	        //Kontuz, 
-	        String query = "INSERT INTO JOKALARI(nan, rola, adina, izena, herrialdea) VALUES ('"+izena+"','"+kategoria+"',"+indarra+","+defentsa+","+kostua+" )";
+	        String query = "INSERT INTO PERTSONAIA VALUES ('"+izena+"','"+kategoria+"',"+indarra+","+defentsa+","+kostua+" )";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query); 
-	    }
+	 }
+	 
+	 
+	 public static void objektuaSartu (Connection konexioa) throws SQLException {
+		 
+		    String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
+	        int    indarra   = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren indarra: ");
+	        int    defentsa  = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren defentsa: ");
+	        int    kostua    = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren kostua: ");
+	        //String pertsonaiIzena = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren pertsonaia: ");
+	        
+	        
+	        //Kontuz, 
+	        String query = "INSERT INTO OBJEKTUA VALUES ('"+izena+"',"+indarra+","+defentsa+","+kostua+" )";
+	        Statement st = konexioa.createStatement();
+	        st.executeUpdate(query); 
+		 
+		 
+		 
+	 }
 
 	
 	 
