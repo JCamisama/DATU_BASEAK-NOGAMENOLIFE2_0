@@ -30,9 +30,10 @@ public class Administratzailea {
             System.out.println("5.-  Pertsonaiaren defentsa aldatu");
             System.out.println("6.-  Objektuaren indarra aldatu");
             System.out.println("7.-  Objektuaren defentsa aldatu");
-            System.out.println("8.-  Jokalaria ezabatu");
-            System.out.println("9.-  Objektua ezabatu");
-            System.out.println("10.- Pertsonaia ezabatu");
+            System.out.println("8.-  Objektuaren kostua aldatu");
+            System.out.println("9.-  Jokalaria ezabatu");
+            System.out.println("10.-  Objektua ezabatu");
+            System.out.println("11.- Pertsonaia ezabatu");
             System.out.println("0.-  Irten");
             aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
             //konexioa = Jokoa.konexioa();
@@ -69,15 +70,21 @@ public class Administratzailea {
             	
             	Administratzailea.objektuaDefentsaAldatu(konexioa);
             }
+            
             else if(aukera==8){
+            	
+            	Administratzailea.objektuaKostuaAldatu(konexioa);
+            }
+            
+            else if(aukera==9){
             	
             	Administratzailea.jokalariaEzabatu(konexioa);
             }
-            else if(aukera==9){
+            else if(aukera==10){
                 
             	Administratzailea.pertsonaiEzabatu(konexioa);
             }
-            else if(aukera==10){
+            else if(aukera==11){
                 
             	Administratzailea.pertsonaiEzabatu(konexioa);
             }
@@ -164,6 +171,15 @@ public class Administratzailea {
 	        st.executeUpdate(query);  
 	 }
 	 
+	 public static void objektuaKostuaAldatu(Connection konexioa) throws SQLException {
+		 
+		 	String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
+	        int    kostua    = Teklatua.getTeklatua().irakurriOsoa("Sartu objektuaren kostu berria: ");
+
+	        String query = "UPDATE OBJEKTUA SET kostua = "+kostua+"  WHERE izena=’"+izena+";";
+	        Statement st = konexioa.createStatement();
+	        st.executeUpdate(query);  
+	 }
 	 
 	 public static void jokalariaEzabatu(Connection konexioa) throws SQLException {
 		 
