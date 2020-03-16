@@ -1,6 +1,9 @@
 package packLol;
 
 public class Jokalaria {
+    
+    private int objKop=0;
+    
     public Jokalaria(){
         
     }
@@ -59,7 +62,13 @@ public class Jokalaria {
                 Jokalaria.objAldatu(objektua,objektuBerria);
             }
             else if(aukera==9){
-                Jokalaria.objektuaSartu();
+                if (this.objKop>5){
+                    System.out.println("Ezin dituzu objektu gehiagorik sartu, 6 da maximoa");
+                }
+                else{
+                    this.objKop++;
+                    Jokalaria.objektuaSartu(); 
+                }
             }
             else if(aukera==10){
                 objektua=Teklatua.getTeklatua().hitzaIrakurri("Sartu Objektua");//exception ez dago objektua
