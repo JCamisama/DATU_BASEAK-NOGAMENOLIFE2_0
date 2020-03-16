@@ -17,10 +17,10 @@ public class MetodosCamisama {
 	        //cambio random
 	        
 	        //Kontuz, 
-	        String query = "INSERT INTO JOKALARI(nan, rola, adina, izena, herrialdea) VALUES ('"+nan+"','"+rola+"',"+adina+",'"+izena+"','"+herrialdea+"' )";
+	        String query = "INSERT INTO JOKALARI(nan, rola, adina, izena, herrialdea) VALUES('"+nan+"','"+rola+"',"+adina+",'"+izena+"','"+herrialdea+"' )";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query); 
-	    }
+	}
 
 	
 	 public static void pertsonaiaSartu(Connection konexioa) throws SQLException {
@@ -34,7 +34,7 @@ public class MetodosCamisama {
 	        
 	        
 	        //Kontuz, 
-	        String query = "INSERT INTO PERTSONAIA VALUES ('"+izena+"','"+kategoria+"',"+indarra+","+defentsa+","+kostua+" )";
+	        String query = "INSERT INTO PERTSONAIA VALUES('"+izena+"','"+kategoria+"',"+indarra+","+defentsa+","+kostua+" )";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query); 
 	 }
