@@ -90,16 +90,12 @@ public class Administratzailea {
             	Administratzailea.pertsonaiEzabatu(konexioa);
             }
             else if(aukera==12){
-                Administratzailea.kategoriaPertsKop(konexioa);
+                Administratzailea.kategoriaPertsKopMax(konexioa);
             }
         }
         System.out.println("Irten zara");
     }
     
-	 private static void kategoriaPertsKop(Connection konexioa) {
-        // TODO Auto-generated method stub
-        
-    }
     public static void jokalariaSartu(Connection konexioa) throws SQLException {
 	       
 	        String nan  = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren NAN zenbakia: ");
@@ -215,6 +211,14 @@ public class Administratzailea {
 	        String query = "DELETE FROM OBJEKTUA WHERE izena=’"+izena+";";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
+	 }
+	 
+	 private static void kategoriaPertsKopMax(Connection konexioa) throws SQLException {
+	    
+	        int kop=Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaia maximoa (baldin eta kategoria batek adierazitako kopurua baino pertsonaia gehiago baditu ez da erakutsiko kategoria hori)");
+            String query = "SELECT kategoria,COUNT(*) FROM PERTSONAIA GROUP BY kategoria HAVING COUNT(*)<="+kop+";";
+            Statement st = konexioa.createStatement();
+            st.executeUpdate(query);          
 	 }
 	 
 }
