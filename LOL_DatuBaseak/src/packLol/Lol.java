@@ -1,7 +1,7 @@
 package packLol;
 
 
-public class ClaseIntransigente {
+public class Lol {
     public static void main(String[] args) /*throws ClassNotFoundException, SQLException*/ {
         // TODO Auto-generated method stub
         int aukera = -1;
