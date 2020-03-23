@@ -34,6 +34,7 @@ public class Administratzailea {
             System.out.println("9.-  Jokalaria ezabatu");
             System.out.println("10.-  Objektua ezabatu");
             System.out.println("11.- Pertsonaia ezabatu");
+            System.out.println("12.- Kategoria bakoitzaren pertsonaia kopurua ikusi");//GROUP BY
             System.out.println("0.-  Irten");
             aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
             //konexioa = Jokoa.konexioa();
@@ -82,16 +83,24 @@ public class Administratzailea {
             }
             else if(aukera==10){
                 
-            	Administratzailea.pertsonaiEzabatu(konexioa);
+            	Administratzailea.objektuaEzabatu(konexioa);
             }
             else if(aukera==11){
                 
             	Administratzailea.pertsonaiEzabatu(konexioa);
             }
+            else if(aukera==12){
+                Administratzailea.kategoriaPertsKop(konexioa);
+            }
         }
+        System.out.println("Irten zara");
     }
     
-	 public static void jokalariaSartu(Connection konexioa) throws SQLException {
+	 private static void kategoriaPertsKop(Connection konexioa) {
+        // TODO Auto-generated method stub
+        
+    }
+    public static void jokalariaSartu(Connection konexioa) throws SQLException {
 	       
 	        String nan  = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren NAN zenbakia: ");
 	        String rola = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren rola: ");

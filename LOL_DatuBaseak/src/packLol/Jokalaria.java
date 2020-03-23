@@ -19,7 +19,7 @@ public class Jokalaria {
             System.out.println("+-------------------------------+");
             System.out.println("Aukeratu:");
             System.out.println("1.-  Objektu baten indarra ikusi");
-            System.out.println("2.-  Objektu baten defentsa ikusi");
+            System.out.println("2.-  Objektu baten defentsa ikusi"); 
             System.out.println("3.-  Objektu baten kostua ikusi");
             System.out.println("4.-  Aukeratutako pertsonaiaren indarra ikusi");
             System.out.println("5.-  Aukeratutako pertsonaiaren defentsa ikusi");
