@@ -1,8 +1,9 @@
 package packLol;
 
+import java.sql.SQLException;
 
 public class Lol {
-    public static void main(String[] args) /*throws ClassNotFoundException, SQLException*/ {
+    public static void main(String[] args) throws SQLException /*throws ClassNotFoundException, SQLException*/ {
         // TODO Auto-generated method stub
         int aukera = -1;
         //Connection konexioa=null;
@@ -26,7 +27,7 @@ public class Lol {
             else if(aukera==2){
                 System.out.println("Jokalari moduan sartu zara");
                 Jokalaria jok=new Jokalaria();
-                jok.menuaBistaratu();
+                jok.partidaJokatu();
             }
             else if(aukera==0){
                 System.out.println("Sistematik irtetzen .... agur!");
