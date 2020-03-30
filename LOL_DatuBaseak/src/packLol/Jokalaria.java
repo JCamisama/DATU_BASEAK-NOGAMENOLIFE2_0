@@ -79,7 +79,7 @@ public class Jokalaria {
             }
         }
     }
-    
+     
     private void partidaHasiera(){
         int aukera = -1;
         Jokalaria.jokalariaSartu();
