@@ -20,7 +20,7 @@ public class Jokalaria {
     public void partidaJokatu() throws SQLException, ClassNotFoundException{
     	
     	
-    	Connection konexioa = Jokalaria.konexioa();
+    	Connection konexioa = Lol.getNireLol().konexioa();
         this.partidaHasiera(konexioa);
         
         int aukera = -1;
@@ -38,9 +38,8 @@ public class Jokalaria {
             System.out.println("5.-  Aukeratutako pertsonaiaren defentsa ikusi");
             System.out.println("6.-  Aukeratutako pertsonaiaren informazioa ikusi");
             System.out.println("7.-  Pertsonaia aldatu");
-            System.out.println("8.-  Objektu bat aldatu");
-            System.out.println("9.-  Objektu bat sartu");
-            System.out.println("10.- Objektu bat kendu");
+            System.out.println("8.-  Objektu bat sartu");
+            System.out.println("9.-  Objektu bat kendu");
             System.out.println("0.-  Partida hasi");
             aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
             //konexioa = Jokoa.konexioa();
@@ -68,24 +67,19 @@ public class Jokalaria {
             else if(aukera==7){
                 Jokalaria.perAldatu();
             }
+        
             else if(aukera==8){
-                String objektuBerria="";
-                objektuBerria=Teklatua.getTeklatua().hitzaIrakurri("Sartu gehitu nahi duzun objektua Objektua");//exception ez dago objektua
-                objektua=Teklatua.getTeklatua().hitzaIrakurri("Sartu kendu nahi duzun Objektua");//exception ez dago objektua
-                Jokalaria.objAldatu(objektua,objektuBerria);
-            }
-            else if(aukera==9){
                 if (this.objKop>5){
                     System.out.println("Ezin dituzu objektu gehiagorik sartu, 6 da maximoa");
                 }
                 else{
                     this.objKop++;
-                    Jokalaria.objektuaSartu(); 
+                    Jokalaria.objektuaSartu(konexioa); 
                 }
             }
-            else if(aukera==10){
+            else if(aukera==9){
                 objektua=Teklatua.getTeklatua().hitzaIrakurri("Sartu Objektua");//exception ez dago objektua
-                Jokalaria.objektuaKendu(objektua);
+                Jokalaria.objektuaKendu(objektua, konexioa);
             }
             else{
                 System.out.println("Partida hasi da!");
@@ -94,14 +88,16 @@ public class Jokalaria {
     }
      
     private void partidaHasiera(Connection konexioa) throws SQLException{//De nuevo, la bombilla
+    	
         int aukera = -1;
-        Jokalaria.jokalariaSartu(konexioa);
+        Jokalaria.jokalariaIdentifikatu(konexioa);
         Jokalaria.pertsonaiaAukeratu(konexioa);
+        
         while(aukera!=0){
             //Interfaze grafikoa aukerekin
             aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
             if (aukera==1){
-                Jokalaria.objektuaSartu();
+                Jokalaria.objektuaSartu(konexioa);
             }
         }
         //Connection konexioa=null;
@@ -148,9 +144,8 @@ public class Jokalaria {
          */
     }
     
-    
-    
-    private static void jokalariaSartu(Connection konexioa) throws SQLException {
+
+    private static void jokalariaIdentifikatu(Connection konexioa) throws SQLException {
     	
 		String nanZenb  = Teklatua.getTeklatua().hitzaIrakurri("Sartu zure nan zenbakia, letrarekin: ");
 	
@@ -171,23 +166,52 @@ public class Jokalaria {
 	    }
     	
     	
-    	
-        // TODO Auto-generated method stub
-      //Interfaze grafikoa pertsonaiekin
     }
-    private static void objektuaSartu(){
-        //Interfaze grafikoa objektuekin
+    
+    
+    private static void objektuaSartu(Connection konexioa) throws SQLException{
     	
+    	
+    	String objIzena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
+
+        String query = "SELECT izena FROM OBJEKTUA WHERE izena='"+objIzena+"'" ;
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        
+        if(rs.getString("izena").equals(objIzena)){
+        	
+        	query = "INSERT INTO HARTU VALUES('"+Jokalaria.nan+"', '"+objIzena+"')";
+        	
+        }
+        
+        else{
+        	
+        	//Eso, faltan salbuespenak. Bien hecho, sería un salbuespen, pero no me pagáis lo suficiente.
+        	System.out.println("Aprende a escribir, hijo de tu p**a madre, retrasau, y hace falta un salbuespen <3");
+        }
     	
     }
     
-    private static void objektuaKendu(String objektua) {
-        // TODO Auto-generated method stub
-        
-    }
+    private static void objektuaKendu(String objektua, Connection konexioa) throws SQLException {
+    	
+    	
+    	String objIzena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
 
-    private static void objAldatu(String objektua, String objektuBerria) {
-        // TODO Auto-generated method stub
+        String query = "SELECT izena FROM OBJEKTUA WHERE izena='"+objIzena+"'" ;
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        
+        if(rs.getString("izena").equals(objIzena)){
+        	
+        	query = "INSERT INTO HARTU VALUES('"+Jokalaria.nan+"', '"+objIzena+"')";
+        	
+        }
+        
+        else{
+        	
+        	//Eso, faltan salbuespenak. Bien hecho, sería un salbuespen, pero no me pagáis lo suficiente.
+        	System.out.println("Aprende a escribir, hijo de tu p**a madre, retrasau, y hace falta un salbuespen <3");
+        }
         
     }
 
@@ -227,12 +251,5 @@ public class Jokalaria {
     }
     
     
-	 public static Connection konexioa() throws ClassNotFoundException, SQLException{
-	        Class.forName("com.mysql.cj.jdbc.Driver");
-	        String zerbitzaria = "jdbc:mysql://localhost:3306/jokoa";
-	        String erabiltzailea = "root";
-	        String pasahitza = "";
-	        return DriverManager.getConnection(zerbitzaria, erabiltzailea, pasahitza);// salvado por la bombilla
 
-	}
 }

@@ -17,7 +17,7 @@ public class Administratzailea {
         int aukera = -1;
         
         //
-        Connection konexioa = Administratzailea.konexioa();
+        Connection konexioa = Lol.getNireLol().konexioa();
         while (aukera != 0) {
             System.out.println("");
             System.out.println("+-------------------------------+");
@@ -221,14 +221,5 @@ public class Administratzailea {
             Statement st = konexioa.createStatement();
             st.executeUpdate(query);          
 	 }
-	 
-	 public static Connection konexioa() throws ClassNotFoundException, SQLException{
-	        Class.forName("com.mysql.cj.jdbc.Driver");
-	        String zerbitzaria = "jdbc:mysql://localhost:3306/jokoa";
-	        String erabiltzailea = "root";
-	        String pasahitza = "";
-	        return DriverManager.getConnection(zerbitzaria, erabiltzailea, pasahitza);// salvado por la bombilla
 
-	    }
-	 
 }
