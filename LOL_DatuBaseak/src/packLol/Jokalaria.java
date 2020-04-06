@@ -1,15 +1,21 @@
 package packLol;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Jokalaria {
     
     private int objKop=0;
+    private static String nan;//porque la bombilla lo dice
     
-    public Jokalaria(){
+    public Jokalaria(String p){
         
     }
     
-    public void partidaJokatu(){
-        this.partidaHasiera();
+    public void partidaJokatu(Connection konexioa) throws SQLException{
+        this.partidaHasiera(konexioa);
         int aukera = -1;
         String objektua = "";
         while (aukera != 0) {
@@ -80,10 +86,10 @@ public class Jokalaria {
         }
     }
      
-    private void partidaHasiera(){
+    private void partidaHasiera(Connection konexioa) throws SQLException{//De nuevo, la bombilla
         int aukera = -1;
-        Jokalaria.jokalariaSartu();
-        Jokalaria.pertsonaiaAukeratu();
+        Jokalaria.jokalariaSartu(konexioa);
+        Jokalaria.pertsonaiaAukeratu(konexioa);
         while(aukera!=0){
             //Interfaze grafikoa aukerekin
             aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
@@ -94,11 +100,71 @@ public class Jokalaria {
         //Connection konexioa=null;
         
     }
-    private static void pertsonaiaAukeratu() {
-        // TODO Auto-generated method stub
-      //Interfaze grafikoa pertsonaiekin
+    private static void pertsonaiaAukeratu(Connection konexioa) throws SQLException {
+    	
+    	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
+
+        String query = "SELECT izena FROM PERTSONAIA WHERE izena='"+izena+"'" ;
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        
+        if(rs.getString("izena").equals(izena)){
+        	
+        	query = "UPDATE JOKALARIA SET perizena='"+izena+"' WHERE NAN='"+Jokalaria.nan+"' ";
+        	
+        }
+        
+        else{
+        	
+        	//Eso, faltan salbuespenak. Bien hecho, sería un salbuespen, pero no me pagáis lo suficiente.
+        	System.out.println("Aprende a escribir, hijo de tu p**a madre, retrasau, y hace falta un salbuespen <3");
+        }
+        
+        
+        
+        
+        /* PERTSONAI AUKERA PROZESUA/ALGORITMOA
+         * 
+         * 1. sartu pertsonaiaren izena
+         * 2. Datu baseuan dagoen bilatu (EXIST bat erabili????)
+         * 3. existitzen bada, update egin.
+         * 4. Ez bada existitzen, aprende a escribir, p**o
+         * 
+         * 
+
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         */
     }
-    private static void jokalariaSartu() {
+    
+    
+    
+    private static void jokalariaSartu(Connection konexioa) throws SQLException {
+    	
+		String nanZenb  = Teklatua.getTeklatua().hitzaIrakurri("Sartu zure nan zenbakia, letrarekin: ");
+	
+	    String query = "SELECT nan FROM JOKALARIA WHERE NAN='"+nanZenb+"'" ;
+	    Statement st = konexioa.createStatement();
+	    ResultSet rs = st.executeQuery(query);
+	    
+	    if(rs.getString("nan").equals(nanZenb)){
+	    	
+	    	Jokalaria.nan = nanZenb;
+	    	
+	    }
+	    
+	    else{
+	    	
+	    	//Eso, faltan salbuespenak. Bien hecho, sería un salbuespen, pero no me pagáis lo suficiente.
+	    	System.out.println("No existes, llora.");
+	    }
+    	
+    	
+    	
         // TODO Auto-generated method stub
       //Interfaze grafikoa pertsonaiekin
     }
