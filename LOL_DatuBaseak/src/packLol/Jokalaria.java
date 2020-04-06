@@ -1,6 +1,7 @@
 package packLol;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,12 +11,18 @@ public class Jokalaria {
     private int objKop=0;
     private static String nan;//porque la bombilla lo dice
     
-    public Jokalaria(String p){
+    public Jokalaria(String pNan){
+    	
+    	nan= pNan;
         
     }
     
-    public void partidaJokatu(Connection konexioa) throws SQLException{
+    public void partidaJokatu() throws SQLException, ClassNotFoundException{
+    	
+    	
+    	Connection konexioa = Jokalaria.konexioa();
         this.partidaHasiera(konexioa);
+        
         int aukera = -1;
         String objektua = "";
         while (aukera != 0) {
@@ -170,6 +177,8 @@ public class Jokalaria {
     }
     private static void objektuaSartu(){
         //Interfaze grafikoa objektuekin
+    	
+    	
     }
     
     private static void objektuaKendu(String objektua) {
@@ -216,4 +225,14 @@ public class Jokalaria {
         // TODO Auto-generated method stub
         
     }
+    
+    
+	 public static Connection konexioa() throws ClassNotFoundException, SQLException{
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+	        String zerbitzaria = "jdbc:mysql://localhost:3306/jokoa";
+	        String erabiltzailea = "root";
+	        String pasahitza = "";
+	        return DriverManager.getConnection(zerbitzaria, erabiltzailea, pasahitza);// salvado por la bombilla
+
+	}
 }

@@ -3,7 +3,7 @@ package packLol;
 import java.sql.SQLException;
 
 public class Lol {
-    public static void main(String[] args) throws SQLException /*throws ClassNotFoundException, SQLException*/ {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         // TODO Auto-generated method stub
         int aukera = -1;
         //Connection konexioa=null;
@@ -18,7 +18,7 @@ public class Lol {
         System.out.println("0.- Irten");
         while (aukera != 1 && aukera!=2 && aukera!=9) {
             aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
-            //konexioa = Jokoa.konexioa();
+            
             if(aukera==1){
                 System.out.println("Administraile moduan sartu zara");
                 Administratzailea adm=new Administratzailea();
@@ -26,7 +26,7 @@ public class Lol {
             }
             else if(aukera==2){
                 System.out.println("Jokalari moduan sartu zara");
-                Jokalaria jok=new Jokalaria();
+                Jokalaria jok=new Jokalaria(Teklatua.getTeklatua().hitzaIrakurri("Mesedez, sartu jokalariaren nan-a: "));
                 jok.partidaJokatu();
             }
             else if(aukera==0){

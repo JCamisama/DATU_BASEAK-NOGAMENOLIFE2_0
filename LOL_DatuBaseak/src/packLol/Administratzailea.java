@@ -1,6 +1,7 @@
 package packLol;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -12,11 +13,11 @@ public class Administratzailea {
     public Administratzailea(){
         
     }
-    public void menuaBistaratu() throws SQLException{ //Este menú queda más bonico en Interfaze grafikoa
+    public void menuaBistaratu() throws SQLException, ClassNotFoundException{ //Este menú queda más bonico en Interfaze grafikoa
         int aukera = -1;
         
         //
-        Connection konexioa=null;
+        Connection konexioa = Administratzailea.konexioa();
         while (aukera != 0) {
             System.out.println("");
             System.out.println("+-------------------------------+");
@@ -220,5 +221,14 @@ public class Administratzailea {
             Statement st = konexioa.createStatement();
             st.executeUpdate(query);          
 	 }
+	 
+	 public static Connection konexioa() throws ClassNotFoundException, SQLException{
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+	        String zerbitzaria = "jdbc:mysql://localhost:3306/jokoa";
+	        String erabiltzailea = "root";
+	        String pasahitza = "";
+	        return DriverManager.getConnection(zerbitzaria, erabiltzailea, pasahitza);// salvado por la bombilla
+
+	    }
 	 
 }
