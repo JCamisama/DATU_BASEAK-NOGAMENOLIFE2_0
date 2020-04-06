@@ -17,7 +17,7 @@ public class Administratzailea {
         int aukera = -1;
         
         //
-        Connection konexioa = Lol.getNireLol().konexioa();
+        Connection konexioa = Lol.konexioa();
         while (aukera != 0) {
             System.out.println("");
             System.out.println("+-------------------------------+");

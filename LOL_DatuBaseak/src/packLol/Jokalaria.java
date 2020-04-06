@@ -20,7 +20,7 @@ public class Jokalaria {
     public void partidaJokatu() throws SQLException, ClassNotFoundException{
     	
     	
-    	Connection konexioa = Lol.getNireLol().konexioa();
+    	Connection konexioa = Lol.konexioa();
         this.partidaHasiera(konexioa);
         
         int aukera = -1;
@@ -45,27 +45,27 @@ public class Jokalaria {
             //konexioa = Jokoa.konexioa();
             if(aukera==1){
                 objektua=Teklatua.getTeklatua().hitzaIrakurri("Sartu Objektua");//exception ez dago objektua
-                Jokalaria.objIndarraBistaratu(objektua);
+                Jokalaria.objIndarraBistaratu(objektua, konexioa);
             }
             else if(aukera==2){
                 objektua=Teklatua.getTeklatua().hitzaIrakurri("Sartu Objektua");//exception ez dago objektua
-                Jokalaria.objDefentsaBistaratu(objektua);
+                Jokalaria.objDefentsaBistaratu(objektua, konexioa);
             }
             else if (aukera==3){
                 objektua=Teklatua.getTeklatua().hitzaIrakurri("Sartu Objektua");//exception ez dago objektua
-                Jokalaria.objKostuaBistaratu(objektua);
+                Jokalaria.objKostuaBistaratu(objektua, konexioa);
             }
             else if(aukera==4){
-                Jokalaria.perIndarraBistaratu();
+                Jokalaria.perIndarraBistaratu(konexioa);
             }
             else if(aukera==5){
-                Jokalaria.perDefentsaBistaratu();
+                Jokalaria.perDefentsaBistaratu(konexioa);
             }
             else if(aukera==6){
-                Jokalaria.perInfoBistartu();
+                Jokalaria.perInfoBistaratu(konexioa);
             }
             else if(aukera==7){
-                Jokalaria.perAldatu();
+                Jokalaria.pertsonaiaAukeratu(konexioa);
             }
         
             else if(aukera==8){
@@ -192,61 +192,126 @@ public class Jokalaria {
     	
     }
     
-    private static void objektuaKendu(String objektua, Connection konexioa) throws SQLException {
+    private static void objektuaKendu(String pObjektua, Connection konexioa) throws SQLException {
     	
-    	
-    	String objIzena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
 
-        String query = "SELECT izena FROM OBJEKTUA WHERE izena='"+objIzena+"'" ;
+        String query = "SELECT objizena FROM HARTU WHERE objizena='"+pObjektua+"'" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         
-        if(rs.getString("izena").equals(objIzena)){
+        if(rs.getString("objizena").equals(pObjektua)){
         	
-        	query = "INSERT INTO HARTU VALUES('"+Jokalaria.nan+"', '"+objIzena+"')";
-        	
+        	query = "DELETE FROM HARTU WHERE OBJIZENA="+pObjektua+"')";	
         }
         
         else{
         	
         	//Eso, faltan salbuespenak. Bien hecho, sería un salbuespen, pero no me pagáis lo suficiente.
         	System.out.println("Aprende a escribir, hijo de tu p**a madre, retrasau, y hace falta un salbuespen <3");
-        }
+        }   
+    }
+    
+    
+    
+    
+
+
+
+    private static void perInfoBistaratu(Connection konexioa) throws SQLException {
+
+    	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
+
+        String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"'" ;
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+       /* 
+        System.out.print("IZENA: ");
+        System.out.println(rs.getString("IZENA"));
+        
+        System.out.print("KATEGORIA: ");
+        System.out.println(rs.getString("KATEGORIA"));
+        
+        System.out.print("INDARRA: ");
+        System.out.println(rs.getString("INDARRA"));
+        
+        System.out.print("DEFENTSA: ");
+        System.out.println(rs.getString("DEFENTSA"));*/
+        
+        System.out.print("INFO: ");
+        System.out.println(rs.getString("INFO"));
+        System.out.println(rs.getString("\n\n"));
+            
+    }
+
+    
+    
+    private static void objKostuaBistaratu(String pObjektua, Connection konexioa) throws SQLException {
+   
+
+        String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"'" ;
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        
+        System.out.print("Objektuaren kostua: ");
+        System.out.println(rs.getString("KOSTUA"));
+        
+
+        System.out.println(rs.getString("\n\n"));
+    }
+
+    private static void perDefentsaBistaratu(Connection konexioa) throws SQLException {
+    	
+    	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
+
+        String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"'" ;
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        
+        System.out.print("DEFENTSA: ");
+        System.out.println(rs.getString("DEFENTSA"));
+        System.out.println(rs.getString("\n\n"));
         
     }
 
-    private static void perAldatu() {
-        // TODO Auto-generated method stub
+    private static void perIndarraBistaratu(Connection konexioa) throws SQLException {
+    	
+    	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
+
+        String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"'" ;
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        
+        System.out.print("INDARRA: ");
+        System.out.println(rs.getString("INDARRA"));
+        System.out.println(rs.getString("\n\n"));
+
+    }
+
+    private static void objDefentsaBistaratu(String pObjektua, Connection konexioa) throws SQLException {
+    	
+        String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"'" ;
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        
+        System.out.print("Objektuaren defentsa: ");
+        System.out.println(rs.getString("DEFENTSA"));
+        
+
+        System.out.println(rs.getString("\n\n"));
         
     }
 
-    private static void perInfoBistartu() {
-        // TODO Auto-generated method stub
+    private static void objIndarraBistaratu(String pObjektua, Connection konexioa) throws SQLException {
+    	
+    	String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"'" ;
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
         
-    }
-
-    private static void objKostuaBistaratu(String objektua) {
-        // TODO Auto-generated method stub
+        System.out.print("Objektuaren indarra: ");
+        System.out.println(rs.getString("INDARRA"));
         
-    }
 
-    private static void perDefentsaBistaratu() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    private static void perIndarraBistaratu() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    private static void objDefentsaBistaratu(String objektua) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    private static void objIndarraBistaratu(String objektua) {
-        // TODO Auto-generated method stub
+        System.out.println(rs.getString("\n\n"));
         
     }
     
