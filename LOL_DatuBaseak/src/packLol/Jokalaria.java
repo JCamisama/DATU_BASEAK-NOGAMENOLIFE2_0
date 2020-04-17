@@ -107,13 +107,13 @@ public class Jokalaria {
     	
     	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 
-        String query = "SELECT izena FROM PERTSONAIA WHERE izena='"+izena+"'" ;
+        String query = "SELECT izena FROM PERTSONAIA WHERE izena='"+izena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         
         if(rs.getString("izena").equals(izena)){
         	
-        	query = "UPDATE JOKALARIA SET perizena='"+izena+"' WHERE NAN='"+Jokalaria.nan+"' ";
+        	query = "UPDATE JOKALARIA SET perizena='"+izena+"' WHERE NAN='"+Jokalaria.nan+"';";
         	
         }
         
@@ -147,12 +147,12 @@ public class Jokalaria {
 
     private static void jokalariaIdentifikatu(Connection konexioa) throws SQLException {
     	
-		String nanZenb  = Teklatua.getTeklatua().hitzaIrakurri("Sartu zure nan zenbakia, letrarekin: ");
+		String nanZenb  = Jokalaria.nan;//Teklatua.getTeklatua().hitzaIrakurri("Sartu zure nan zenbakia, letrarekin: ");
 	
-	    String query = "SELECT nan FROM JOKALARIA WHERE NAN='"+nanZenb+"'" ;
+	    String query = "SELECT nan FROM JOKALARIA WHERE NAN='"+nanZenb+"';" ;
 	    Statement st = konexioa.createStatement();
 	    ResultSet rs = st.executeQuery(query);
-	    
+	    System.out.println(rs.getFetchSize());
 	    if(rs.getString("nan").equals(nanZenb)){
 	    	
 	    	Jokalaria.nan = nanZenb;
@@ -174,13 +174,13 @@ public class Jokalaria {
     	
     	String objIzena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
 
-        String query = "SELECT izena FROM OBJEKTUA WHERE izena='"+objIzena+"'" ;
+        String query = "SELECT izena FROM OBJEKTUA WHERE izena='"+objIzena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         
         if(rs.getString("izena").equals(objIzena)){
         	
-        	query = "INSERT INTO HARTU VALUES('"+Jokalaria.nan+"', '"+objIzena+"')";
+        	query = "INSERT INTO HARTU VALUES('"+Jokalaria.nan+"', '"+objIzena+"');";
         	
         }
         
@@ -195,13 +195,13 @@ public class Jokalaria {
     private static void objektuaKendu(String pObjektua, Connection konexioa) throws SQLException {
     	
 
-        String query = "SELECT objizena FROM HARTU WHERE objizena='"+pObjektua+"'" ;
+        String query = "SELECT objizena FROM HARTU WHERE objizena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         
         if(rs.getString("objizena").equals(pObjektua)){
         	
-        	query = "DELETE FROM HARTU WHERE OBJIZENA="+pObjektua+"')";	
+        	query = "DELETE FROM HARTU WHERE OBJIZENA="+pObjektua+"');";	
         }
         
         else{
@@ -221,7 +221,7 @@ public class Jokalaria {
 
     	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 
-        String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"'" ;
+        String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
        /* 
@@ -248,7 +248,7 @@ public class Jokalaria {
     private static void objKostuaBistaratu(String pObjektua, Connection konexioa) throws SQLException {
    
 
-        String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"'" ;
+        String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         
@@ -263,7 +263,7 @@ public class Jokalaria {
     	
     	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 
-        String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"'" ;
+        String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         
@@ -277,7 +277,7 @@ public class Jokalaria {
     	
     	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 
-        String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"'" ;
+        String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         
@@ -289,7 +289,7 @@ public class Jokalaria {
 
     private static void objDefentsaBistaratu(String pObjektua, Connection konexioa) throws SQLException {
     	
-        String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"'" ;
+        String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         
@@ -303,7 +303,7 @@ public class Jokalaria {
 
     private static void objIndarraBistaratu(String pObjektua, Connection konexioa) throws SQLException {
     	
-    	String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"'" ;
+    	String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         

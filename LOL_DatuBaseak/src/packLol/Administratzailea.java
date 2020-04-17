@@ -101,7 +101,7 @@ public class Administratzailea {
 	       
 	        String nan  = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren NAN zenbakia: ");
 	        String rola = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren rola: ");
-	        int	   adina = Teklatua.getTeklatua().irakurriOsoa("Sartu jokalariaren rola: ");
+	        int	   adina = Teklatua.getTeklatua().irakurriOsoa("Sartu jokalariaren adina: ");
 	        String izena = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren izena: ");
 	        String herrialdea = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren herrialdea: ");
 

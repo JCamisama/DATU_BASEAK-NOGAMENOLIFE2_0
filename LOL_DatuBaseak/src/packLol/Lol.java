@@ -42,7 +42,7 @@ public class Lol {
             }
             else if(aukera==2){
                 System.out.println("Jokalari moduan sartu zara");
-                Jokalaria jok=new Jokalaria(Teklatua.getTeklatua().hitzaIrakurri("Mesedez, sartu jokalariaren nan-a: "));
+                Jokalaria jok=new Jokalaria(Teklatua.getTeklatua().hitzaIrakurri("Mesedez, sartu jokalariaren nan-a"));
                 jok.partidaJokatu();
             }
             else if(aukera==0){
@@ -58,7 +58,7 @@ public class Lol {
     
 	public static Connection konexioa() throws ClassNotFoundException, SQLException{
 	        Class.forName("com.mysql.cj.jdbc.Driver");
-	        String zerbitzaria = "jdbc:mysql://localhost:3306/jokoa";
+	        String zerbitzaria = "jdbc:mysql://localhost:3306/lol";
 	        String erabiltzailea = "root";
 	        String pasahitza = "";
 	        return DriverManager.getConnection(zerbitzaria, erabiltzailea, pasahitza);// salvado por la bombilla
