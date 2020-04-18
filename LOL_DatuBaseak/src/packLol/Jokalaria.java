@@ -197,7 +197,8 @@ public class Jokalaria {
         rs.next();
         if(rs.getString("objizena").equals(pObjektua)){
         	
-        	query = "DELETE FROM HARTU WHERE OBJIZENA='"+pObjektua+"';";	
+        	query = "DELETE FROM HARTU WHERE OBJIZENA='"+pObjektua+"';";
+        	st.executeUpdate(query);
         }
         
         else{
