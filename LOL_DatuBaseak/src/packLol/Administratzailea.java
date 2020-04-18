@@ -2,6 +2,7 @@ package packLol;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -105,7 +106,7 @@ public class Administratzailea {
 	        String izena = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren izena: ");
 	        String herrialdea = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren herrialdea: ");
 
-	        String query = "INSERT INTO JOKALARI(nan, rola, adina, izena, herrialdea) VALUES('"+nan+"','"+rola+"',"+adina+",'"+izena+"','"+herrialdea+"' )";
+	        String query = "INSERT INTO JOKALARIA(nan, rola, adina, izena, herrialdea) VALUES('"+nan+"','"+rola+"',"+adina+",'"+izena+"','"+herrialdea+"');";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query); 
 	}
@@ -117,9 +118,9 @@ public class Administratzailea {
 	        String kategoria = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren kategoria: ");
 	        int    indarra   = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren indarra: ");
 	        int    defentsa  = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren defentsa: ");
-	        int    kostua    = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren kostua: ");
+	        String    info    = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren informazioa: ");
 
-	        String query = "INSERT INTO PERTSONAIA VALUES('"+izena+"','"+kategoria+"',"+indarra+","+defentsa+","+kostua+" )";
+	        String query = "INSERT INTO PERTSONAIA VALUES('"+izena+"','"+kategoria+"',"+indarra+","+defentsa+",'"+info+"');";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query); 
 	 }
@@ -132,7 +133,7 @@ public class Administratzailea {
 	        int    defentsa  = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren defentsa: ");
 	        int    kostua    = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren kostua: ");
 
-	        String query = "INSERT INTO OBJEKTUA VALUES ('"+izena+"',"+indarra+","+defentsa+","+kostua+" )";
+	        String query = "INSERT INTO OBJEKTUA VALUES ('"+izena+"',"+indarra+","+defentsa+","+kostua+");";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
 	 }
@@ -142,7 +143,7 @@ public class Administratzailea {
 		 	String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 	        int    indarra   = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren indar berria: ");
 
-	        String query = "UPDATE PERTSONAIA SET indarra = "+indarra+"  WHERE SIZENA=’"+izena+"; ";
+	        String query = "UPDATE PERTSONAIA SET indarra = "+indarra+"  WHERE IZENA='"+izena+"';";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
 	 }
@@ -152,7 +153,7 @@ public class Administratzailea {
 		 	String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 	        int    defentsa  = Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaiaren defentsa berria: ");
 
-	        String query = "UPDATE PERTSONAIA SET defentsa = "+defentsa+"  WHERE SIZENA=’"+izena+";";
+	        String query = "UPDATE PERTSONAIA SET defentsa = "+defentsa+"  WHERE IZENA='"+izena+"';";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
 	 }
@@ -162,7 +163,7 @@ public class Administratzailea {
 		 	String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
 	        int    indarra   = Teklatua.getTeklatua().irakurriOsoa("Sartu objektuaren indar berria: ");
 	      
-	        String query = "UPDATE OBJEKTUA SET indarra = "+indarra+"  WHERE izena=’"+izena+"; ";
+	        String query = "UPDATE OBJEKTUA SET indarra = "+indarra+"  WHERE izena='"+izena+"';";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
 	 }
@@ -172,7 +173,7 @@ public class Administratzailea {
 		 	String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
 	        int    defentsa  = Teklatua.getTeklatua().irakurriOsoa("Sartu objektuaren defentsa berria: ");
 
-	        String query = "UPDATE OBJEKTUA SET defentsa = "+defentsa+"  WHERE izena=’"+izena+";";
+	        String query = "UPDATE OBJEKTUA SET denfentsa = "+defentsa+"  WHERE izena='"+izena+"';";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
 	 }
@@ -182,7 +183,7 @@ public class Administratzailea {
 		 	String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
 	        int    kostua    = Teklatua.getTeklatua().irakurriOsoa("Sartu objektuaren kostu berria: ");
 
-	        String query = "UPDATE OBJEKTUA SET kostua = "+kostua+"  WHERE izena=’"+izena+";";
+	        String query = "UPDATE OBJEKTUA SET kostua = "+kostua+"  WHERE izena='"+izena+"';";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
 	 }
@@ -191,7 +192,7 @@ public class Administratzailea {
 		 
 		 	String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu ezabatu nahi duzun jokalariaren izena: ");
 	      
-	        String query = "DELETE FROM JOKALARI WHERE izena=’"+izena+";";
+	        String query = "DELETE FROM JOKALARIA WHERE izena='"+izena+"';";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
 	 }
@@ -200,7 +201,7 @@ public class Administratzailea {
 		 
 		 	String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu ezabatu nahi duzun pertsonaiaren izena: ");
 	              
-	        String query = "DELETE FROM PERTSONAIA WHERE izena=’"+izena+";";
+	        String query = "DELETE FROM PERTSONAIA WHERE izena='"+izena+"';";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
 	 }
@@ -209,7 +210,7 @@ public class Administratzailea {
 		 
 		 	String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu ezabatu nahi duzun objektuaren izena: ");
 	              
-	        String query = "DELETE FROM OBJEKTUA WHERE izena=’"+izena+";";
+	        String query = "DELETE FROM OBJEKTUA WHERE izena='"+izena+"';";
 	        Statement st = konexioa.createStatement();
 	        st.executeUpdate(query);  
 	 }
@@ -219,7 +220,12 @@ public class Administratzailea {
 	        int kop=Teklatua.getTeklatua().irakurriOsoa("Sartu pertsonaia maximoa (baldin eta kategoria batek adierazitako kopurua baino pertsonaia gehiago baditu ez da erakutsiko kategoria hori)");
             String query = "SELECT kategoria,COUNT(*) FROM PERTSONAIA GROUP BY kategoria HAVING COUNT(*)<="+kop+";";
             Statement st = konexioa.createStatement();
-            st.executeUpdate(query);          
+            ResultSet rs = st.executeQuery(query);
+            System.out.println("***KATEGORIAKO PERTSONAIA KOPURUA ("+kop+" baino gutxiago)***\n");
+            while (rs.next()) {
+                System.out.print(" - "+rs.getString("kategoria"));
+                System.out.println(" - "+rs.getString("COUNT(*)"));
+            }
 	 }
 
 }

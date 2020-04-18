@@ -152,7 +152,6 @@ public class Jokalaria {
 	    String query = "SELECT nan FROM JOKALARIA WHERE NAN='"+nanZenb+"';" ;
 	    Statement st = konexioa.createStatement();
 	    ResultSet rs = st.executeQuery(query);
-	    System.out.println(rs.getFetchSize());
 	    if(rs.getString("nan").equals(nanZenb)){
 	    	
 	    	Jokalaria.nan = nanZenb;
