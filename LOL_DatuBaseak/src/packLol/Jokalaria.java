@@ -188,7 +188,7 @@ public class Jokalaria {
         }
     	
     }
-    
+    //cambio random
     private static void objektuaKendu(String pObjektua, Connection konexioa) throws SQLException, ClassNotFoundException {
     	
         String query = "SELECT objizena FROM HARTU WHERE objizena='"+pObjektua+"';" ;
