@@ -42,6 +42,7 @@ public class Lol {
             }
             else if(aukera==2){
                 System.out.println("Jokalari moduan sartu zara");
+                Menu.getNireMenu().displayJokalariMenu();
                 Jokalaria jok=new Jokalaria(Teklatua.getTeklatua().hitzaIrakurri("Mesedez, sartu jokalariaren nan-a"));
                 jok.partidaJokatu();
             }

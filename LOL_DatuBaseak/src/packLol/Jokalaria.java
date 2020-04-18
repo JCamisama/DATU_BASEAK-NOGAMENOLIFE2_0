@@ -87,30 +87,22 @@ public class Jokalaria {
         }
     }
      
-    private void partidaHasiera(Connection konexioa) throws SQLException{//De nuevo, la bombilla
+    private void partidaHasiera(Connection konexioa) throws SQLException, ClassNotFoundException{//De nuevo, la bombilla
     	
-        int aukera = -1;
         Jokalaria.jokalariaIdentifikatu(konexioa);
         Jokalaria.pertsonaiaAukeratu(konexioa);
-        
-        while(aukera!=0){
-            //Interfaze grafikoa aukerekin
-            aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
-            if (aukera==1){
-                Jokalaria.objektuaSartu(konexioa);
-            }
-        }
         //Connection konexioa=null;
         
     }
-    private static void pertsonaiaAukeratu(Connection konexioa) throws SQLException {
+    private static void pertsonaiaAukeratu(Connection konexioa) throws SQLException, ClassNotFoundException {
     	
+        Menu.getNireMenu().displayPertsonaiaMenu();
     	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 
         String query = "SELECT izena FROM PERTSONAIA WHERE izena='"+izena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
-        
+        rs.next();
         if(rs.getString("izena").equals(izena)){
         	
         	query = "UPDATE JOKALARIA SET perizena='"+izena+"' WHERE NAN='"+Jokalaria.nan+"';";
@@ -145,13 +137,13 @@ public class Jokalaria {
     }
     
 
-    private static void jokalariaIdentifikatu(Connection konexioa) throws SQLException {
-    	
+    private static void jokalariaIdentifikatu(Connection konexioa) throws SQLException, ClassNotFoundException {
+    
 		String nanZenb  = Jokalaria.nan;//Teklatua.getTeklatua().hitzaIrakurri("Sartu zure nan zenbakia, letrarekin: ");
-	
-	    String query = "SELECT nan FROM JOKALARIA WHERE NAN='"+nanZenb+"';" ;
+	    String query = "SELECT nan FROM JOKALARIA WHERE nan='"+nanZenb+"';";
 	    Statement st = konexioa.createStatement();
 	    ResultSet rs = st.executeQuery(query);
+	    rs.next();
 	    if(rs.getString("nan").equals(nanZenb)){
 	    	
 	    	Jokalaria.nan = nanZenb;
@@ -176,7 +168,7 @@ public class Jokalaria {
         String query = "SELECT izena FROM OBJEKTUA WHERE izena='"+objIzena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
-        
+        rs.next();
         if(rs.getString("izena").equals(objIzena)){
         	
         	query = "INSERT INTO HARTU VALUES('"+Jokalaria.nan+"', '"+objIzena+"');";
@@ -191,16 +183,16 @@ public class Jokalaria {
     	
     }
     
-    private static void objektuaKendu(String pObjektua, Connection konexioa) throws SQLException {
+    private static void objektuaKendu(String pObjektua, Connection konexioa) throws SQLException, ClassNotFoundException {
     	
-
+        Menu.getNireMenu().displayObjektuMenu();
         String query = "SELECT objizena FROM HARTU WHERE objizena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
-        
+        rs.next();
         if(rs.getString("objizena").equals(pObjektua)){
         	
-        	query = "DELETE FROM HARTU WHERE OBJIZENA="+pObjektua+"');";	
+        	query = "DELETE FROM HARTU WHERE OBJIZENA='"+pObjektua+"';";	
         }
         
         else{
@@ -216,13 +208,15 @@ public class Jokalaria {
 
 
 
-    private static void perInfoBistaratu(Connection konexioa) throws SQLException {
+    private static void perInfoBistaratu(Connection konexioa) throws SQLException, ClassNotFoundException {
 
+        Menu.getNireMenu().displayPertsonaiaMenu();
     	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 
         String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
+        rs.next();
        /* 
         System.out.print("IZENA: ");
         System.out.println(rs.getString("IZENA"));
@@ -244,12 +238,13 @@ public class Jokalaria {
 
     
     
-    private static void objKostuaBistaratu(String pObjektua, Connection konexioa) throws SQLException {
+    private static void objKostuaBistaratu(String pObjektua, Connection konexioa) throws SQLException, ClassNotFoundException {
    
-
+        Menu.getNireMenu().displayObjektuMenu();
         String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
+        rs.next();
         
         System.out.print("Objektuaren kostua: ");
         System.out.println(rs.getString("KOSTUA"));
@@ -258,13 +253,15 @@ public class Jokalaria {
         System.out.println(rs.getString("\n\n"));
     }
 
-    private static void perDefentsaBistaratu(Connection konexioa) throws SQLException {
+    private static void perDefentsaBistaratu(Connection konexioa) throws SQLException, ClassNotFoundException {
     	
+        Menu.getNireMenu().displayPertsonaiaMenu();
     	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 
         String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
+        rs.next();
         
         System.out.print("DEFENTSA: ");
         System.out.println(rs.getString("DEFENTSA"));
@@ -272,13 +269,15 @@ public class Jokalaria {
         
     }
 
-    private static void perIndarraBistaratu(Connection konexioa) throws SQLException {
+    private static void perIndarraBistaratu(Connection konexioa) throws SQLException, ClassNotFoundException {
     	
+        Menu.getNireMenu().displayPertsonaiaMenu();
     	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 
         String query = "SELECT * FROM PERTSONAIA WHERE izena='"+izena+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
+        rs.next();
         
         System.out.print("INDARRA: ");
         System.out.println(rs.getString("INDARRA"));
@@ -286,11 +285,13 @@ public class Jokalaria {
 
     }
 
-    private static void objDefentsaBistaratu(String pObjektua, Connection konexioa) throws SQLException {
+    private static void objDefentsaBistaratu(String pObjektua, Connection konexioa) throws SQLException, ClassNotFoundException {
     	
+        Menu.getNireMenu().displayObjektuMenu();
         String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
+        rs.next();
         
         System.out.print("Objektuaren defentsa: ");
         System.out.println(rs.getString("DEFENTSA"));
@@ -300,11 +301,13 @@ public class Jokalaria {
         
     }
 
-    private static void objIndarraBistaratu(String pObjektua, Connection konexioa) throws SQLException {
+    private static void objIndarraBistaratu(String pObjektua, Connection konexioa) throws SQLException, ClassNotFoundException {
     	
+        Menu.getNireMenu().displayObjektuMenu();
     	String query = "SELECT * FROM OBJEKTUA WHERE izena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
+        rs.next();
         
         System.out.print("Objektuaren indarra: ");
         System.out.println(rs.getString("INDARRA"));

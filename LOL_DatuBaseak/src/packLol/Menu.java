@@ -24,13 +24,14 @@ public class Menu {
         Lol.getNireLol();
         Connection konexioa=Lol.konexioa();
         
-        String query = "SELECT izena FROM JOKALARIA;";
+        String query = "SELECT izena,nan FROM JOKALARIA;";
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);
         System.out.println("***JOKALARI ESKURAGARRIAK***\n");
         while (rs.next()) {
             System.out.println(" - "+rs.getString("izena")+" - "+rs.getString("nan"));
         }
+        System.out.println();
     }
     
     public void displayPertsonaiaMenu() throws ClassNotFoundException, SQLException{
@@ -45,6 +46,7 @@ public class Menu {
         while (rs.next()) {
             System.out.println(" - "+rs.getString("izena"));
         }
+        System.out.println();
     }
     
     public void displayObjektuMenu() throws ClassNotFoundException, SQLException{
@@ -59,5 +61,6 @@ public class Menu {
         while (rs.next()) {
             System.out.println(" - "+rs.getString("izena"));
         }
+        System.out.println();
     }
 }
