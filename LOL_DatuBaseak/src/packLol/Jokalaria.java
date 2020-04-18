@@ -72,6 +72,7 @@ public class Jokalaria {
             }
         
             else if(aukera==8){
+                Menu.getNireMenu().displayJokalariarenObjektuak(Jokalaria.nan);
                 if (this.objKop>5){
                     System.out.println("Ezin dituzu objektu gehiagorik sartu, 6 da maximoa");
                 }
@@ -82,7 +83,8 @@ public class Jokalaria {
                 }
             }
             else if(aukera==9){
-                Menu.getNireMenu().displayObjektuMenu();
+                Menu.getNireMenu().displayJokalariarenObjektuak(Jokalaria.nan);
+                this.objKop--;
                 objektua=Teklatua.getTeklatua().hitzaIrakurri("Sartu Objektua");//exception ez dago objektua
                 Jokalaria.objektuaKendu(objektua, konexioa);
             }
@@ -112,7 +114,7 @@ public class Jokalaria {
         if(rs.getString("izena").equals(izena)){
         	
         	query = "UPDATE JOKALARIA SET perizena='"+izena+"' WHERE NAN='"+Jokalaria.nan+"';";
-        	
+        	st.executeUpdate(query);
         }
         
         else{
@@ -152,7 +154,6 @@ public class Jokalaria {
     
     private static void objektuaSartu(Connection konexioa) throws SQLException, ClassNotFoundException{
     	
-    	Menu.getNireMenu().displayJokalariarenObjektuak(Jokalaria.nan);
     	String objIzena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
 
         String query = "SELECT izena FROM OBJEKTUA WHERE izena='"+objIzena+"';" ;
@@ -176,7 +177,6 @@ public class Jokalaria {
     //cambio random
     private static void objektuaKendu(String pObjektua, Connection konexioa) throws SQLException, ClassNotFoundException {
     	
-    	Menu.getNireMenu().displayJokalariarenObjektuak(Jokalaria.nan);
         String query = "SELECT objizena FROM HARTU WHERE objizena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);

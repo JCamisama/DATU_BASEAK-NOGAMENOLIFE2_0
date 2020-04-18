@@ -33,7 +33,7 @@ public class Lol {
         System.out.println("2.- Jokalari moduan sartu");
         System.out.println("0.- Irten");
         while (aukera != 1 && aukera!=2 && aukera!=9) {
-            aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
+            aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera: ");
             
             if(aukera==1){
                 System.out.println("Administraile moduan sartu zara");
@@ -43,7 +43,7 @@ public class Lol {
             else if(aukera==2){
                 System.out.println("Jokalari moduan sartu zara");
                 Menu.getNireMenu().displayJokalariMenu();
-                Jokalaria jok=new Jokalaria(Teklatua.getTeklatua().hitzaIrakurri("Mesedez, sartu jokalariaren nan-a"));
+                Jokalaria jok=new Jokalaria(Teklatua.getTeklatua().hitzaIrakurri("Mesedez, sartu jokalariaren nan-a: "));
                 jok.partidaJokatu();
             }
             else if(aukera==0){
