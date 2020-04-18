@@ -26,6 +26,8 @@ public class Teklatua {
 		System.out.println(pMezua+" ");
 		int zenbakia;
 		zenbakia=sc.nextInt();
+		sc.nextLine();//Aldaketa
+		
 		return zenbakia;
 	}
 	
@@ -56,10 +58,21 @@ public class Teklatua {
 		return erantzuna;
 	}
 	
+	/*
 	public String hitzaIrakurri(String pMezua){
 		
 		System.out.print(pMezua+" ");
 		String erantzuna	= sc.next();
+		
+		
+		return erantzuna;
+	}
+	*/
+	
+	public String hitzaIrakurri(String pMezua){
+		
+		System.out.print(pMezua+" ");
+		String erantzuna	= sc.nextLine();
 		
 		
 		return erantzuna;

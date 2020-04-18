@@ -176,8 +176,9 @@ public class Jokalaria {
         rs.next();
         if(rs.getString("izena").equals(objIzena)){
         	
-        	query = "INSERT INTO HARTU VALUES('"+Jokalaria.nan+"', '"+objIzena+"');";
         	
+        	query = "INSERT INTO HARTU VALUES('"+Jokalaria.nan+"', '"+objIzena+"');";
+            st.executeUpdate(query);
         }
         
         else{
@@ -236,7 +237,7 @@ public class Jokalaria {
         
         System.out.print("INFO: ");
         System.out.println(rs.getString("INFO"));
-        System.out.println(rs.getString("\n\n"));
+        System.out.println("\n\n");
             
     }
 
@@ -253,7 +254,7 @@ public class Jokalaria {
         System.out.println(rs.getString("KOSTUA"));
         
 
-        System.out.println(rs.getString("\n\n"));
+        System.out.println("\n\n");
     }
 
     private static void perDefentsaBistaratu(Connection konexioa) throws SQLException, ClassNotFoundException {
@@ -268,7 +269,7 @@ public class Jokalaria {
         
         System.out.print("DEFENTSA: ");
         System.out.println(rs.getString("DEFENTSA"));
-        System.out.println(rs.getString("\n\n"));
+        System.out.println("\n\n");
         
     }
 
@@ -284,7 +285,7 @@ public class Jokalaria {
         
         System.out.print("INDARRA: ");
         System.out.println(rs.getString("INDARRA"));
-        System.out.println(rs.getString("\n\n"));
+        System.out.println("\n\n");
 
     }
 
@@ -296,10 +297,10 @@ public class Jokalaria {
         rs.next();
         
         System.out.print("Objektuaren defentsa: ");
-        System.out.println(rs.getString("DEFENTSA"));
+        System.out.println(rs.getString("DENFENTSA"));
         
 
-        System.out.println(rs.getString("\n\n"));
+        System.out.println("\n\n");
         
     }
 
@@ -310,11 +311,12 @@ public class Jokalaria {
         ResultSet rs = st.executeQuery(query);
         rs.next();
         
+        System.out.println(pObjektua);
         System.out.print("Objektuaren indarra: ");
         System.out.println(rs.getString("INDARRA"));
         
 
-        System.out.println(rs.getString("\n\n"));
+        System.out.println("\n\n");
         
     }
     
