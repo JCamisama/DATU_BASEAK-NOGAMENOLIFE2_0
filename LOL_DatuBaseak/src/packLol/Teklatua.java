@@ -23,7 +23,7 @@ public class Teklatua {
 	}
 	
 	public int irakurriOsoaSalbuespen(String pMezua) {
-		System.out.println(pMezua+": ");
+		System.out.println(pMezua+" ");
 		int zenbakia;
 		zenbakia=sc.nextInt();
 		return zenbakia;
@@ -49,7 +49,7 @@ public class Teklatua {
 	//Metodo berriak
 	public String noraMugitu(String pMezua){
 		
-		System.out.print(pMezua+": ");
+		System.out.print(pMezua+" ");
 		String erantzuna	= sc.next();
 		
 		
@@ -58,7 +58,7 @@ public class Teklatua {
 	
 	public String hitzaIrakurri(String pMezua){
 		
-		System.out.print(pMezua+": ");
+		System.out.print(pMezua+" ");
 		String erantzuna	= sc.next();
 		
 		
