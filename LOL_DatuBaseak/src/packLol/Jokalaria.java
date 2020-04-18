@@ -101,6 +101,7 @@ public class Jokalaria {
     }
     private static void pertsonaiaAukeratu(Connection konexioa) throws SQLException, ClassNotFoundException {
     	
+    	Menu.getNireMenu().displayJokalariarenPertsonaia(Jokalaria.nan);    	
         Menu.getNireMenu().displayPertsonaiaMenu();
     	String izena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren izena: ");
 
@@ -122,23 +123,7 @@ public class Jokalaria {
         
         
         
-        
-        /* PERTSONAI AUKERA PROZESUA/ALGORITMOA
-         * 
-         * 1. sartu pertsonaiaren izena
-         * 2. Datu baseuan dagoen bilatu (EXIST bat erabili????)
-         * 3. existitzen bada, update egin.
-         * 4. Ez bada existitzen, aprende a escribir, p**o
-         * 
-         * 
-
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         */
+       
     }
     
 
@@ -165,9 +150,9 @@ public class Jokalaria {
     }
     
     
-    private static void objektuaSartu(Connection konexioa) throws SQLException{
+    private static void objektuaSartu(Connection konexioa) throws SQLException, ClassNotFoundException{
     	
-    	
+    	Menu.getNireMenu().displayJokalariarenObjektuak(Jokalaria.nan);
     	String objIzena  = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
 
         String query = "SELECT izena FROM OBJEKTUA WHERE izena='"+objIzena+"';" ;
@@ -191,6 +176,7 @@ public class Jokalaria {
     //cambio random
     private static void objektuaKendu(String pObjektua, Connection konexioa) throws SQLException, ClassNotFoundException {
     	
+    	Menu.getNireMenu().displayJokalariarenObjektuak(Jokalaria.nan);
         String query = "SELECT objizena FROM HARTU WHERE objizena='"+pObjektua+"';" ;
         Statement st = konexioa.createStatement();
         ResultSet rs = st.executeQuery(query);

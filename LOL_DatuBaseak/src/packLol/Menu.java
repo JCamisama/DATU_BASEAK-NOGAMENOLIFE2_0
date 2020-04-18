@@ -63,4 +63,41 @@ public class Menu {
         }
         System.out.println();
     }
+    
+    public void displayJokalariarenObjektuak(String pNan) throws ClassNotFoundException, SQLException{
+        
+        Lol.getNireLol();
+        Connection konexioa=Lol.konexioa();
+        
+        String query = "SELECT objizena FROM HARTU WHERE nanjok='"+pNan+"';";
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        
+        System.out.println("***ZURE OBJEKTUAK***\n");
+        
+        while (rs.next()) {
+
+            System.out.println(" - "+rs.getString("objizena"));
+        }
+        
+        System.out.println();
+    }
+    
+    public void displayJokalariarenPertsonaia(String pNan) throws ClassNotFoundException, SQLException{
+        
+        Lol.getNireLol();
+        Connection konexioa=Lol.konexioa();
+        
+        String query = "SELECT perizena FROM jokalaria WHERE nan='"+pNan+"';";
+        Statement st = konexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        System.out.println("***ZURE PERTSONAIA***\n");
+        while (rs.next()) {
+            System.out.println(" - "+rs.getString("perizena"));
+        }
+        
+        
+        System.out.println();
+        
+    }
 }
