@@ -96,8 +96,19 @@ public class Jokalaria {
      
     private void partidaHasiera(Connection konexioa) throws SQLException, ClassNotFoundException{//De nuevo, la bombilla
     	
-        Jokalaria.jokalariaIdentifikatu(konexioa);
-        Jokalaria.pertsonaiaAukeratu(konexioa);
+    	int emaitza = -1;     	 
+    	emaitza = Jokalaria.jokalariaIdentifikatu(konexioa);        
+        if (emaitza != -1) {
+        	
+        	Jokalaria.pertsonaiaAukeratu(konexioa);        	
+        }
+        
+        else {
+        	
+        	Menu.getNireMenu().menuPrintzipalaBistaratu();
+        	
+        }   	
+        
         //Connection konexioa=null;
         
     }
@@ -129,26 +140,37 @@ public class Jokalaria {
     }
     
 
-    private static void jokalariaIdentifikatu(Connection konexioa) throws SQLException, ClassNotFoundException {
-    
-		String nanZenb  = Jokalaria.nan;//Teklatua.getTeklatua().hitzaIrakurri("Sartu zure nan zenbakia, letrarekin: ");
-	    String query = "SELECT nan FROM JOKALARIA WHERE nan='"+nanZenb+"';";
-	    Statement st = konexioa.createStatement();
-	    ResultSet rs = st.executeQuery(query);
-	    rs.next();
-	    if(rs.getString("nan").equals(nanZenb)){
+    private static int jokalariaIdentifikatu(Connection konexioa) throws ClassNotFoundException {
+    	
+    	int emaitza = -1;
+    	
+    	try {
+    	
+			String nanZenb  = Jokalaria.nan;//Teklatua.getTeklatua().hitzaIrakurri("Sartu zure nan zenbakia, letrarekin: ");
+		    String query = "SELECT nan FROM JOKALARIA WHERE nan='"+nanZenb+"';";
+		    Statement st = konexioa.createStatement();
+		    ResultSet rs = st.executeQuery(query);
+		    rs.next();
+		    nanZenb = nanZenb.replaceAll("\\s+","");	    
+	   	    	
+	    
+	    	if(rs.getString("nan").equals(nanZenb)){
 	    	
-	    	Jokalaria.nan = nanZenb;
+	    		Jokalaria.nan = nanZenb;
+	    		emaitza = 0;
+	    	
+	    	}
+	    
 	    	
 	    }
 	    
-	    else{
-	    	
-	    	//Eso, faltan salbuespenak. Bien hecho, sería un salbuespen, pero no me pagáis lo suficiente.
-	    	System.out.println("No existes, llora.");
-	    }
+	    catch (SQLException e){
+    		
+	    	Teklatua.getTeklatua().hitzaIrakurri("\nSartu duzun NAN zenbakia ez da existitzen. Mesedez saia zaitez berriro: ");		    	
+    		
+    	}
     	
-    	
+    	return emaitza;
     }
     
     

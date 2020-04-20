@@ -101,10 +101,10 @@ public class Administratzailea {
     public static void jokalariaSartu(Connection konexioa) throws SQLException {
 	       
 	        String nan  = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren NAN zenbakia: ");
-	        String rola = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren rola: ");
-	        int	   adina = Teklatua.getTeklatua().irakurriOsoa("Sartu jokalariaren adina: ");
-	        String izena = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren izena: ");
-	        String herrialdea = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren herrialdea: ");
+	        String rola = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren rola: "); 
+	        int	   adina = Teklatua.getTeklatua().irakurriOsoa("Sartu jokalariaren adina: "); 
+	        String izena = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren izena: "); 
+	        String herrialdea = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren herrialdea: "); 
 
 	        String query = "INSERT INTO JOKALARIA(nan, rola, adina, izena, herrialdea) VALUES('"+nan+"','"+rola+"',"+adina+",'"+izena+"','"+herrialdea+"');";
 	        Statement st = konexioa.createStatement();

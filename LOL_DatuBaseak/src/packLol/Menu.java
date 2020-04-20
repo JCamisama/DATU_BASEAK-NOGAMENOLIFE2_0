@@ -19,6 +19,49 @@ public class Menu {
         return nMenu;
     }
     
+    public void menuPrintzipalaBistaratu() throws ClassNotFoundException, SQLException {
+    	
+    	 // TODO Auto-generated method stub
+        int aukera = -1;
+        //Connection konexioa=null;
+        
+        System.out.println("Ongietorri League Of Legends-era. Nola sartu nahi zara?");
+        System.out.println("+--------------+");
+        System.out.println("|    Menua     |");
+        System.out.println("+--------------+");
+        System.out.println("Aukeratu:");
+        System.out.println("1.- Administratzaile moduan sartu");
+        System.out.println("2.- Jokalari moduan sartu");
+        System.out.println("0.- Irten");
+        while (aukera != 1 && aukera!=2 && aukera!=0) {
+            aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera: ");
+            
+            if(aukera==1){
+                System.out.println("Administraile moduan sartu zara");
+                Administratzailea adm=new Administratzailea();
+                adm.menuaBistaratu();
+            }
+            else if(aukera==2){
+                System.out.println("Jokalari moduan sartu zara");
+                Menu.getNireMenu().displayJokalariMenu();
+                Jokalaria jok=new Jokalaria(Teklatua.getTeklatua().hitzaIrakurri("Mesedez, sartu jokalariaren nan-a: "));
+                jok.partidaJokatu();
+            }
+            else if(aukera==0){
+                System.out.println("Sistematik irtetzen .... agur!");
+                System.exit(0);
+            }
+            else{
+                System.out.println("Aukera desegokia sartu duzu");
+            }
+        }
+        //konexioa.close();  
+      
+    	
+    	
+    	
+    }
+    
     public void displayJokalariMenu() throws ClassNotFoundException, SQLException{
         
         Lol.getNireLol();
@@ -29,7 +72,7 @@ public class Menu {
         ResultSet rs = st.executeQuery(query);
         System.out.println("***JOKALARI ESKURAGARRIAK***\n");
         while (rs.next()) {
-            System.out.println(" - "+rs.getString("izena")+" - "+rs.getString("nan"));
+            System.out.println(" - "+rs.getString("izena"));
         }
         System.out.println();
     }
