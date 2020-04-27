@@ -37,7 +37,8 @@ public class Administratzailea {
 	            System.out.println("9.-  Jokalaria ezabatu");
 	            System.out.println("10.-  Objektua ezabatu");
 	            System.out.println("11.- Pertsonaia ezabatu");
-	            System.out.println("12.- Kategoria bakoitzaren pertsonaia kopurua ikusi");//GROUP BY
+	            System.out.println("12.- Pertsonaiak alfabetikoki ordenatu");
+	            System.out.println("13.- Kategoria bakoitzaren pertsonaia kopurua ikusi");//GROUP BY
 	            System.out.println("0.-  Irten");
 	            aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
 	            //konexioa = Jokoa.konexioa();
@@ -93,6 +94,9 @@ public class Administratzailea {
 	            	Administratzailea.pertsonaiEzabatu(konexioa);
 	            }
 	            else if(aukera==12){
+	                Administratzailea.pertsonaiakOrdenatu(konexioa);
+	            }
+	            else if(aukera==13){
 	                Administratzailea.kategoriaPertsKopMax(konexioa);
 	            }
 	        }
@@ -533,7 +537,16 @@ public class Administratzailea {
 		 }
 	 }
 
-	 
+	 private static void pertsonaiakOrdenatu(Connection konexioa) throws SQLException {
+	     
+	     String query = "SELECT izena FROM PERTSONAIA ORDER BY izena;";
+         Statement st = konexioa.createStatement();
+         ResultSet rs = st.executeQuery(query);
+         System.out.println("***PERTSONAIAK ALFABETIKOKI ORDENATUTA***\n");
+         while (rs.next()) {
+             System.out.println(" - "+rs.getString("izena"));
+         }
+	 }
 	 
 	 //Metodo laguntzaileak
 	 
