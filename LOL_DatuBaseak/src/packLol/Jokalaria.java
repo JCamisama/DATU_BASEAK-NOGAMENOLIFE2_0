@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 public class Jokalaria {
     
-    private int objKop=0;
     private static String nan;
     
     public Jokalaria(String pNan){
@@ -41,7 +40,7 @@ public class Jokalaria {
             System.out.println("8.-  Objektu bat sartu");
             System.out.println("9.-  Objektu bat kendu");
             System.out.println("0.-  Partida hasi");
-            aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera");
+            aukera=Teklatua.getTeklatua().irakurriOsoa("Sartu aukera: ");
             //konexioa = Jokoa.konexioa();
             if(aukera==1){
                 Menu.getNireMenu().displayObjektuMenu();
@@ -73,20 +72,26 @@ public class Jokalaria {
         
             else if(aukera==8){
                 Menu.getNireMenu().displayJokalariarenObjektuak(Jokalaria.nan);
-                if (this.objKop>5){
+                if (this.objektuKopurua(konexioa)>5){
                     System.out.println("Ezin dituzu objektu gehiagorik sartu, 6 da maximoa");
                 }
                 else{
-                    this.objKop++;
                     Menu.getNireMenu().displayObjektuMenu();
                     Jokalaria.objektuaSartu(konexioa); 
                 }
             }
             else if(aukera==9){
-                Menu.getNireMenu().displayJokalariarenObjektuak(Jokalaria.nan);
-                this.objKop--;
-                objektua=Teklatua.getTeklatua().hitzaIrakurri("Sartu Objektua");//exception ez dago objektua
-                Jokalaria.objektuaKendu(objektua, konexioa);
+            	
+            	if(this.objektuKopurua(konexioa)>0){
+            		
+					Menu.getNireMenu().displayJokalariarenObjektuak(Jokalaria.nan);
+					objektua=Teklatua.getTeklatua().hitzaIrakurri("Sartu Objektua");//exception ez dago objektua
+					Jokalaria.objektuaKendu(objektua, konexioa);
+            	}
+            	else{
+            		
+            		System.out.println("\nEzin duzu objekturik kendu, 0 objektu dituzu hautatuta.\n");
+            	}
             }
             else{
                 System.out.println("Partida hasi da!");
@@ -409,5 +414,21 @@ public class Jokalaria {
     }
     
     
+    
+    //Objektuak zenbatzeko erabiliko den metodoa
+    private int objektuKopurua(Connection pKonexioa) throws SQLException{
+    	
+    	int emaitza = 0;
+    	
+    	String query = "SELECT COUNT(*) FROM HARTU WHERE NANJOK='"+Jokalaria.nan+"';" ;
+        Statement st = pKonexioa.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        rs.next();
+    	
+    	emaitza = rs.getInt("COUNT(*)");
+    	
+    	
+    	return emaitza;
+    }
 
 }

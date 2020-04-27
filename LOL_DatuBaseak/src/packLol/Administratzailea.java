@@ -557,13 +557,22 @@ public class Administratzailea {
 
 	 private static void pertsonaiakOrdenatu(Connection konexioa) throws SQLException {
 	     
-	     String query = "SELECT izena FROM PERTSONAIA ORDER BY izena;";
-         Statement st = konexioa.createStatement();
-         ResultSet rs = st.executeQuery(query);
-         System.out.println("***PERTSONAIAK ALFABETIKOKI ORDENATUTA***\n");
-         while (rs.next()) {
-             System.out.println(" - "+rs.getString("izena"));
-         }
+		 try{
+			 
+		 
+		     String query = "SELECT izena FROM PERTSONAIA ORDER BY izena;";
+	         Statement st = konexioa.createStatement();
+	         ResultSet rs = st.executeQuery(query);
+	         System.out.println("***PERTSONAIAK ALFABETIKOKI ORDENATUTA***\n");
+	         while (rs.next()) {
+	             System.out.println(" - "+rs.getString("izena"));
+	         }
+		 }
+		 
+		 catch(SQLException e){
+			 
+			 System.out.println("\nEz dago pertsonairik datu-basean. \n");
+		 }
 	 }
 	 
 	 //Metodo laguntzaileak
