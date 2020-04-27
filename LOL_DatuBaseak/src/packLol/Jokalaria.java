@@ -127,7 +127,7 @@ public class Jokalaria {
 	        ResultSet rs = st.executeQuery(query);
 	        rs.next();
 	        
-	        if(rs.getString("izena").equals(izena)){
+	        if(rs.getString("izena").equalsIgnoreCase(izena)){
 	        	
 	        	query = "UPDATE JOKALARIA SET perizena='"+izena+"' WHERE NAN='"+Jokalaria.nan+"';";
 	        	st.executeUpdate(query);
@@ -156,7 +156,7 @@ public class Jokalaria {
 		    ResultSet rs = st.executeQuery(query);
 		    rs.next();
 		    System.out.println("\n"+nanZenb);
-	    	if(rs.getString("nan").equals(nanZenb)){
+	    	if(rs.getString("nan").equalsIgnoreCase(nanZenb)){
 	    	
 	    		Jokalaria.nan = nanZenb; //NOTA: Hemen ere jokalariaren nan-a ipini behar da????? menuan ipintzen da ere, 
 	    									//    'Menu' klaseko 47. lerroan!
@@ -190,7 +190,7 @@ public class Jokalaria {
 	        ResultSet rs = st.executeQuery(query);
 	        rs.next();
 	        
-	        if(rs.getString("izena").equals(objIzena)){
+	        if(rs.getString("izena").equalsIgnoreCase(objIzena)){
 	        	
 	        	
 	        	query = "INSERT INTO HARTU VALUES('"+Jokalaria.nan+"', '"+objIzena+"');";
@@ -214,7 +214,7 @@ public class Jokalaria {
 	        ResultSet rs = st.executeQuery(query);
 	        rs.next();
 	        
-	        if(rs.getString("objizena").equals(pObjektua)){
+	        if(rs.getString("objizena").equalsIgnoreCase(pObjektua)){
 	        	
 	        	query = "DELETE FROM HARTU WHERE OBJIZENA='"+pObjektua+"';";
 	        	st.executeUpdate(query);
@@ -247,7 +247,7 @@ public class Jokalaria {
 	        rs.next();
 	        
 	        
-	        if(rs.getString("izena").equals(izena)){
+	        if(rs.getString("izena").equalsIgnoreCase(izena)){
 	        	
 	        	System.out.print("INFO: ");
 	            System.out.println(rs.getString("INFO"));
@@ -287,7 +287,7 @@ public class Jokalaria {
 	        ResultSet rs = st.executeQuery(query);
 	        rs.next();
 	        
-	        if(rs.getString("izena").equals(pObjektua)){
+	        if(rs.getString("izena").equalsIgnoreCase(pObjektua)){
 	        	
 	        	System.out.print("Objektuaren kostua: ");
 	            System.out.println(rs.getString("KOSTUA"));
@@ -315,7 +315,7 @@ public class Jokalaria {
 	        ResultSet rs = st.executeQuery(query);
 	        rs.next();
 	        
-	        if(rs.getString("izena").equals(izena)){
+	        if(rs.getString("izena").equalsIgnoreCase(izena)){
 		        
 	        	System.out.print("DEFENTSA: ");
 		        System.out.println(rs.getString("DEFENTSA"));
@@ -342,7 +342,7 @@ public class Jokalaria {
 	        ResultSet rs = st.executeQuery(query);
 	        rs.next();
 	        
-	        if(rs.getString("izena").equals(izena)){
+	        if(rs.getString("izena").equalsIgnoreCase(izena)){
 	        	
 		        System.out.print("INDARRA: ");
 		        System.out.println(rs.getString("INDARRA"));
@@ -368,7 +368,7 @@ public class Jokalaria {
 	        ResultSet rs = st.executeQuery(query);
 	        rs.next();
 	        
-	        if(rs.getString("izena").equals(pObjektua)){
+	        if(rs.getString("izena").equalsIgnoreCase(pObjektua)){
 	        	
 	            System.out.print("Objektuaren defentsa: ");
 	            System.out.println(rs.getString("DENFENTSA"));
@@ -393,7 +393,7 @@ public class Jokalaria {
 	        ResultSet rs = st.executeQuery(query);
 	        rs.next();
 	        
-	        if(rs.getString("izena").equals(pObjektua)){
+	        if(rs.getString("izena").equalsIgnoreCase(pObjektua)){
 	        	
 	            System.out.println(pObjektua);
 	            System.out.print("Objektuaren indarra: ");
