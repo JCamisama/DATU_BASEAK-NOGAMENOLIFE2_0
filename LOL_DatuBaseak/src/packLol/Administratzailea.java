@@ -109,8 +109,9 @@ public class Administratzailea {
     	}
     }
     
-    public static void jokalariaSartu(Connection konexioa) throws SQLException { //Berrikusita 1 aldiz
-	       
+    public static void jokalariaSartu(Connection konexioa){ //Berrikusita 1 aldiz
+       	
+    	try{
 	        String nan  = Teklatua.getTeklatua().hitzaIrakurri("Sartu jokalariaren NAN zenbakia: ");
 	        nan = nan.trim();
 	        
@@ -154,13 +155,19 @@ public class Administratzailea {
 	        	
 	        	System.out.println("NAN-a desegokia da, saia zaitez berriro (Adibidea: 888888888-A) ");
 	        }
-	        	
+	        
+    	}
+    	catch(SQLException e){
+			 
+			 System.out.println("Sartu duzun jokalaria jadanik existitzen zen.");
+		 } 	
     }
 	    
 	 
 	 
-	 public static void pertsonaiaSartu(Connection konexioa) throws SQLException {//Berrikusita 1 aldiz
+	 public static void pertsonaiaSartu(Connection konexioa){//Berrikusita 1 aldiz
 	       
+		 try{
 		 	String kategoria = Teklatua.getTeklatua().hitzaIrakurri("Sartu pertsonaiaren kategoria (Euskarri, "
 		 			+ "Mago, Tanke, Tiratzailea, Borrokalari, Hiltzaile): ");
 		 	kategoria = kategoria.trim();
@@ -210,12 +217,17 @@ public class Administratzailea {
 		 		
 		 		System.out.println("Sartu duzun kategoria ez da egokia, saia zaitez berriro mesedez");
 		 	}
+		 }
+		 catch(SQLException e){
+			 
+			 System.out.println("Sartu duzun pertsonaia jadanik existitzen zen.");
+		 } 	
 	 
 	 }
 	 
 	 
-	 public static void objektuaSartu (Connection konexioa) throws SQLException { //Berrikusita 1 aldiz
-		 
+	 public static void objektuaSartu (Connection konexioa){ //Berrikusita 1 aldiz
+		 try{
 		    String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu objektuaren izena: ");
 		    izena = izena.trim();
 		    
@@ -241,6 +253,12 @@ public class Administratzailea {
 		    	
 		 		System.out.println("Sartu duzun kategoria ez da egokia, saia zaitez berriro mesedez");
 		    }
+		 }
+		 catch(SQLException e){
+			 
+			 System.out.println("Sartu duzun objektua jadanik existitzen zen.");
+		 } 	
+		 
 	          
 	 }
 	 
@@ -428,7 +446,7 @@ public class Administratzailea {
 
 	    	try {
 	        	
-	    		String izena     = Teklatua.getTeklatua().hitzaIrakurri("Sartu ezabatu nahi duzun jokalariaren izena: ");
+	    		String izena = Teklatua.getTeklatua().hitzaIrakurri("Sartu ezabatu nahi duzun jokalariaren izena: ");
 	    		izena = izena.trim(); //Espazioak kenduko dira hasieran eta amaieran, MySQL-ko emaitzarekin konparatu ahal izateko.
 
 			    String query = "SELECT izena FROM JOKALARIA WHERE izena='"+izena+"';";
